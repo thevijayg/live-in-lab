@@ -63,24 +63,24 @@ export function CropRecommendation() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Crop Suitability & Recommendation Advisory
+            <h1 className="page-title">
+              Crop fit
             </h1>
-            <Badge variant="lime">Decide Layer</Badge>
+            <Badge variant="outline">Soil, water, climate</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Transparent agronomic matching based on soil classification, microclimate, and water resources.
+          <p className="text-sm text-slate-muted mt-1">
+            Which listed crops match this plot’s soil, irrigation, and typical weather — scored, not promised.
           </p>
         </div>
       </div>
 
       {/* Input Parameters Config Panel */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <h3 className="text-xs font-bold uppercase tracking-wider text-charcoal">
-          Configurable Agro-Climatic Parameters for Evaluation
+          Plot conditions to score against
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
@@ -155,7 +155,7 @@ export function CropRecommendation() {
                   <span className="text-[11px] text-slate-muted font-medium">{crop.season}</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-2xl font-black text-forest">{crop.suitabilityScore}</span>
+                  <span className="text-2xl font-semibold text-forest">{crop.suitabilityScore}</span>
                   <span className="text-xs font-bold text-slate-muted">/100</span>
                   <Badge variant={crop.suitabilityScore >= 80 ? "agri" : crop.suitabilityScore >= 60 ? "lime" : "warning"} size="xs" className="block mt-0.5">
                     {crop.suitabilityScore >= 80 ? "Highly Suitable" : crop.suitabilityScore >= 60 ? "Moderate Fit" : "Conditional"}
@@ -231,7 +231,7 @@ export function CropRecommendation() {
               <button
                 type="button"
                 onClick={() => setSelectedCropInfo(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-forest text-lime-accent"
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-forest text-cream"
               >
                 Close Crop Profile
               </button>

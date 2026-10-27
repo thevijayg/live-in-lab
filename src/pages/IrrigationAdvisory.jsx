@@ -105,16 +105,16 @@ export function IrrigationAdvisory() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Irrigation Advisory & Water Scheduling
+            <h1 className="page-title">
+              Irrigation
             </h1>
-            <Badge variant="lime">Decide Layer</Badge>
+            <Badge variant="outline">Moisture vs crop stage</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Data-driven scheduling based on real-time soil moisture and crop phenological demands.
+          <p className="text-sm text-slate-muted mt-1">
+            Whether this plot should run a cycle, based on root-zone moisture and growth stage.
           </p>
         </div>
 
@@ -128,7 +128,7 @@ export function IrrigationAdvisory() {
           </button>
           <button
             onClick={() => setIsLogModalOpen(true)}
-            className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all"
+            className="btn-primary text-xs"
           >
             <Plus className="w-4 h-4" />
             <span>Record Irrigation Event</span>
@@ -137,7 +137,7 @@ export function IrrigationAdvisory() {
       </div>
 
       {/* Advisory Status Banner Card */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div className="panel p-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         <div className="lg:col-span-8 space-y-3">
           <div className="flex items-center gap-3">
             <div className={`p-3 rounded-2xl ${
@@ -151,7 +151,7 @@ export function IrrigationAdvisory() {
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-muted">Advisory Engine Output</span>
-              <h2 className="text-xl sm:text-2xl font-black text-charcoal">{advisoryStatus}</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold text-charcoal">{advisoryStatus}</h2>
             </div>
           </div>
           <p className="text-xs sm:text-sm text-slate-muted leading-relaxed">
@@ -170,7 +170,7 @@ export function IrrigationAdvisory() {
           <span className="text-xs text-slate-muted font-bold uppercase tracking-wider block">
             Current Root-Depth Moisture
           </span>
-          <span className="text-4xl font-black text-forest">
+          <span className="text-4xl font-semibold text-forest">
             {moistureSensor ? `${moistureSensor.latestReading}%` : "N/A"}
           </span>
           <p className="text-[11px] text-slate-400">
@@ -180,7 +180,7 @@ export function IrrigationAdvisory() {
       </div>
 
       {/* Moisture Trend Chart vs Threshold Bands */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div>
             <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
@@ -209,7 +209,7 @@ export function IrrigationAdvisory() {
       </div>
 
       {/* Irrigation History & Log Table */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
           <div>
             <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
@@ -358,7 +358,7 @@ export function IrrigationAdvisory() {
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-xl text-xs font-bold bg-forest hover:bg-forest-dark text-lime-accent"
+              className="btn-primary text-xs"
             >
               Save Irrigation Log
             </button>
@@ -406,7 +406,7 @@ export function IrrigationAdvisory() {
           <div className="pt-3 flex justify-end gap-3">
             <button
               onClick={() => setIsThresholdModalOpen(false)}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-forest text-lime-accent"
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-forest text-cream"
             >
               Save Limits
             </button>

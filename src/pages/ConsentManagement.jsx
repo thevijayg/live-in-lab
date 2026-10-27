@@ -79,22 +79,22 @@ export function ConsentManagement() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Consent-Based Data Sharing & Governance
+            <h1 className="page-title">
+              Consent
             </h1>
-            <Badge variant="forest">Finance & Trust Layer</Badge>
+            <Badge variant="outline">Who can see the file</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Empowers farmers with granular, time-bound consent controls for sharing Digital Farm Profiles with financial institutions, FPOs, and research partners.
+          <p className="text-sm text-slate-muted mt-1">
+            Grant or revoke access to the farm profile for a bank, FPO, or research partner, with an end date.
           </p>
         </div>
 
         <button
           onClick={() => setIsGrantModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all self-start sm:self-auto"
+          className="btn-primary self-start sm:self-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Grant New Data Access Consent</span>
@@ -276,7 +276,7 @@ export function ConsentManagement() {
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-xl text-xs font-bold bg-forest hover:bg-forest-dark text-lime-accent"
+              className="btn-primary text-xs"
             >
               Issue Consent Token
             </button>

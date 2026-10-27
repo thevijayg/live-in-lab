@@ -144,16 +144,16 @@ export function DigitalFarmProfilePage() {
   return (
     <div className="space-y-6">
       {/* Header with Export Controls */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 no-print">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 no-print">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Digital Farm Profile (DFP)
+            <h1 className="page-title">
+              Farm profile
             </h1>
-            <Badge variant="agri">Schema v1.0 Standard</Badge>
+            <Badge variant="outline">Shareable record</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Finance & Trust Layer: Comprehensive structured representation of farm identity, agronomic history, and IoT observations.
+          <p className="text-sm text-slate-muted mt-1">
+            Identity, season notes, and probe history in one file — shared only after consent.
           </p>
         </div>
 
@@ -174,7 +174,7 @@ export function DigitalFarmProfilePage() {
           </button>
           <button
             onClick={handleExportJSON}
-            className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all"
+            className="btn-primary text-xs"
           >
             <Download className="w-4 h-4" />
             <span>Export DFP JSON</span>
@@ -183,13 +183,13 @@ export function DigitalFarmProfilePage() {
       </div>
 
       {/* Completeness Gauge & Missing Data Checklist */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div className="panel p-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         <div className="lg:col-span-4 bg-ivory p-6 rounded-2xl border border-slate-200/80 text-center">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-muted">
             Profile Completeness
           </span>
           <div className="mt-2 flex items-center justify-center gap-1">
-            <span className="text-5xl font-black text-forest">{totalScore}</span>
+            <span className="text-5xl font-semibold text-forest">{totalScore}</span>
             <span className="text-xl font-bold text-slate-muted">%</span>
           </div>
           <Badge variant={totalScore >= 80 ? "agri" : "warning"} size="sm" className="mt-2">
@@ -236,7 +236,7 @@ export function DigitalFarmProfilePage() {
       </div>
 
       {/* Printable Structured Farm Report Container */}
-      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-border shadow-md space-y-8 print:border-none print:shadow-none print:p-0">
+      <div className="bg-white rounded-md p-6 sm:p-10 border border-slate-border shadow-md space-y-8 print:border-none print:shadow-none print:p-0">
         {/* Printable Report Header */}
         <div className="flex items-start justify-between pb-6 border-b-2 border-forest">
           <div className="flex items-center gap-3">
@@ -244,7 +244,7 @@ export function DigitalFarmProfilePage() {
               <img src="/logo.svg" alt="logo" className="w-full h-full" />
             </div>
             <div>
-              <h2 className="text-2xl font-black text-forest-dark tracking-tight">AGRINOVA</h2>
+              <h2 className="text-2xl font-semibold text-forest-dark tracking-tight">AGRINOVA</h2>
               <p className="text-xs font-semibold text-agri uppercase tracking-widest">
                 Official Digital Farm Profile Summary
               </p>
@@ -347,7 +347,7 @@ export function DigitalFarmProfilePage() {
             {currentFarmSensors.map(sensor => (
               <div key={sensor.id} className="p-3 rounded-xl bg-ivory border border-slate-200 space-y-1">
                 <span className="font-bold text-charcoal block truncate">{sensor.type}</span>
-                <span className="text-base font-black text-forest block">{sensor.latestReading} {sensor.unit}</span>
+                <span className="text-base font-semibold text-forest block">{sensor.latestReading} {sensor.unit}</span>
                 <span className="font-mono text-[10px] text-slate-400 block">{sensor.id}</span>
               </div>
             ))}

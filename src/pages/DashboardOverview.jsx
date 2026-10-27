@@ -85,42 +85,42 @@ export function DashboardOverview() {
   return (
     <div className="space-y-6">
       {/* Welcome & Pilot Notification Bar */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Welcome back, {currentUser?.name || "Farmer"}
-            </h1>
-            <Badge variant="lime">Pilot Simulation Mode</Badge>
-          </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Monitoring <strong className="text-charcoal">{selectedFarm?.name || "Your Farm"}</strong> ({selectedFarm?.village}, {selectedFarm?.district}, {selectedFarm?.state}) • Main Crop: <span className="text-forest font-semibold">{selectedFarm?.mainCrop}</span>
+          <p className="page-kicker">Today on the selected farm</p>
+          <h1 className="page-title mt-1">
+            {selectedFarm?.name || "Your farm"}
+          </h1>
+          <p className="text-sm text-slate-muted mt-1">
+            {currentUser?.name ? `${currentUser.name} · ` : ""}
+            {selectedFarm?.village}, {selectedFarm?.district}, {selectedFarm?.state}
+            {selectedFarm?.mainCrop ? ` · ${selectedFarm.mainCrop}` : ""}
+            <span className="ml-2 inline-block"><Badge variant="outline">Simulated readings</Badge></span>
           </p>
         </div>
 
-        {/* Quick Action Buttons */}
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => navigate("/farms")}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-ivory text-charcoal hover:bg-slate-100 border border-slate-border transition-colors shadow-sm"
+            className="btn-secondary text-xs py-2"
           >
-            <Plus className="w-3.5 h-3.5 text-agri" />
-            <span>Add Farm</span>
+            <Plus className="w-3.5 h-3.5" />
+            Add farm
           </button>
           <button
             onClick={handleGenerate}
             disabled={isGenerating}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl bg-forest hover:bg-forest-dark text-lime-accent shadow-sm transition-all"
+            className="btn-primary text-xs py-2"
           >
             <BrainCircuit className={`w-3.5 h-3.5 ${isGenerating ? "animate-spin" : ""}`} />
-            <span>{isGenerating ? "Evaluating Rules..." : "Run AI Engine"}</span>
+            {isGenerating ? "Running rules…" : "Run advice rules"}
           </button>
           <button
             onClick={() => navigate("/digital-profiles")}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-ivory-subtle text-forest hover:bg-lime-soft border border-forest/15 transition-colors shadow-sm"
+            className="btn-secondary text-xs py-2"
           >
-            <FileCheck2 className="w-3.5 h-3.5 text-forest" />
-            <span>Farm Profile</span>
+            <FileCheck2 className="w-3.5 h-3.5" />
+            Farm profile
           </button>
         </div>
       </div>
@@ -179,15 +179,14 @@ export function DashboardOverview() {
       {/* Real-time Field Conditions & Telemetry Row */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left: 24-Hour Diurnal Chart */}
-        <div className="lg:col-span-8 bg-white rounded-2xl p-5 sm:p-6 border border-slate-border shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2 mb-4">
+        <div className="lg:col-span-8 panel p-5 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-border gap-2 mb-4">
             <div>
-              <h3 className="text-base font-bold text-charcoal flex items-center gap-2">
-                <Activity className="w-5 h-5 text-forest" />
-                <span>24-Hour Root-Zone & Microclimate Trends</span>
+              <h3 className="font-sans text-base font-semibold text-charcoal">
+                Moisture and weather, last 24 hours
               </h3>
               <p className="text-xs text-slate-muted mt-0.5">
-                Simulated diurnal cycle for {selectedFarm?.name || "Active Farm"} (Updated in real-time)
+                Typical day-night cycle for {selectedFarm?.name || "this farm"} — simulated, not a live probe
               </p>
             </div>
             <div className="flex items-center gap-2 text-xs">
@@ -220,7 +219,7 @@ export function DashboardOverview() {
                 <XAxis dataKey="time" stroke="#667085" fontSize={11} tickLine={false} />
                 <YAxis stroke="#667085" fontSize={11} tickLine={false} domain={[10, 90]} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E4E7EC", fontSize: "12px" }}
+                  contentStyle={{ backgroundColor: "#FFFFFF", borderRadius: "6px", border: "1px solid #DDD6C9", fontSize: "12px" }}
                 />
                 <Area type="monotone" dataKey="moisture" name="Soil Moisture (%)" stroke="#2F855A" strokeWidth={2.5} fillOpacity={1} fill="url(#colorMoisture)" />
                 <Line type="monotone" dataKey="temp" name="Temperature (°C)" stroke="#E9A23B" strokeWidth={2} dot={{ r: 3 }} />
@@ -229,10 +228,10 @@ export function DashboardOverview() {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-muted">
-            <span>Optimal Soil Moisture Band: <strong className="text-charcoal font-semibold">45% — 70%</strong></span>
-            <Link to="/sensors" className="text-agri font-bold hover:underline flex items-center gap-1">
-              <span>View All Registered Probes</span>
+          <div className="mt-4 pt-3 border-t border-slate-border flex flex-wrap items-center justify-between text-xs text-slate-muted">
+            <span>Comfortable moisture band: <strong className="text-charcoal font-medium">45%–70%</strong></span>
+            <Link to="/sensors" className="text-forest font-medium hover:underline flex items-center gap-1">
+              All probes
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -241,64 +240,59 @@ export function DashboardOverview() {
         {/* Right: Farm Health & Irrigation Status Gauge */}
         <div className="lg:col-span-4 space-y-6">
           {/* Farm Health Gauge Card */}
-          <div className="bg-white rounded-2xl p-5 border border-slate-border shadow-sm">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-muted mb-3">
-              Overall Farm Health Score
+          <div className="panel p-5">
+            <h4 className="text-xs font-medium text-slate-muted mb-3">
+              Field condition
             </h4>
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="text-4xl font-extrabold text-forest">
-                  {selectedFarm?.healthScore || 85}
-                </span>
-                <span className="text-sm font-bold text-slate-muted ml-1">/ 100</span>
-                <p className="text-xs font-semibold text-agri mt-1 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>{selectedFarm?.healthStatus || "Optimal Conditions"}</span>
-                </p>
-              </div>
-              <div className="w-20 h-20 rounded-full border-4 border-agri/20 border-t-agri flex items-center justify-center font-bold text-sm text-forest bg-ivory">
-                {selectedFarm?.healthScore || 85}%
-              </div>
+            <div>
+              <span className="font-display text-4xl font-medium text-forest tabular-nums">
+                {selectedFarm?.healthScore || 85}
+              </span>
+              <span className="text-sm text-slate-muted ml-1">/ 100</span>
+              <p className="text-xs text-agri mt-1 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>{selectedFarm?.healthStatus || "Within range"}</span>
+              </p>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-100 space-y-2 text-xs">
+            <div className="mt-4 pt-3 border-t border-slate-border space-y-2 text-xs">
               <div className="flex justify-between text-slate-muted">
-                <span>Telemetry Freshness</span>
-                <span className="font-semibold text-charcoal">Live (15m ago)</span>
+                <span>Last simulated update</span>
+                <span className="font-medium text-charcoal">15 min ago</span>
               </div>
               <div className="flex justify-between text-slate-muted">
-                <span>Field Sensor Coverage</span>
-                <span className="font-semibold text-charcoal">{currentFarmSensors.length} Nodes Online</span>
+                <span>Probes on this farm</span>
+                <span className="font-medium text-charcoal">{currentFarmSensors.length} online</span>
               </div>
               <div className="flex justify-between text-slate-muted">
-                <span>Irrigation Threshold</span>
-                <span className="font-semibold text-charcoal">Normal</span>
+                <span>Irrigation</span>
+                <span className="font-medium text-charcoal">No extra cycle today</span>
               </div>
             </div>
           </div>
 
           {/* Quick Irrigation Action Snapshot */}
-          <div className="bg-white rounded-2xl p-5 border border-slate-border shadow-sm">
+          <div className="panel p-5">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-muted">
-                Irrigation Advisory
+              <h4 className="text-xs font-medium text-slate-muted">
+                Irrigation
               </h4>
-              <Badge variant="lime" size="xs">Recommended</Badge>
+              <Badge variant="outline" size="xs">Hold drip</Badge>
             </div>
-            <div className="p-3.5 rounded-xl bg-ivory-subtle border border-forest/10 space-y-2">
+            <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Droplets className="w-4 h-4 text-forest" />
-                <span className="text-xs font-bold text-forest">Precision Drip Scheduled</span>
+                <span className="text-xs font-medium text-forest">Moisture is in band</span>
               </div>
               <p className="text-xs text-charcoal leading-relaxed">
-                Soil moisture at 58.4% is optimal. Next recommended scheduled fertigation window opens at 06:00 tomorrow morning.
+                58.4% at root depth. Next fertigation window is 06:00 tomorrow, unless the afternoon reading falls below 45%.
               </p>
             </div>
             <Link
               to="/irrigation"
-              className="mt-3 block text-center py-2 px-3 rounded-xl text-xs font-bold text-forest bg-ivory hover:bg-slate-100 border border-slate-border transition-colors"
+              className="mt-3 block text-center py-2 px-3 rounded-md text-xs font-medium text-forest bg-ivory hover:bg-ivory-subtle border border-slate-border"
             >
-              Open Irrigation Advisory Module →
+              Open irrigation notes
             </Link>
           </div>
         </div>
@@ -312,18 +306,17 @@ export function DashboardOverview() {
         </div>
 
         {/* Right: Latest AI Agricultural Recommendations */}
-        <div className="lg:col-span-6 bg-white rounded-2xl p-5 border border-slate-border shadow-sm flex flex-col justify-between">
+        <div className="lg:col-span-6 panel p-5 flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-border mb-4">
               <div>
-                <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
-                  <BrainCircuit className="w-4 h-4 text-forest" />
-                  <span>Latest Agricultural Intelligence</span>
+                <h3 className="font-sans text-sm font-semibold text-charcoal">
+                  Latest advice
                 </h3>
-                <p className="text-xs text-slate-muted">Generated by rule engine based on field conditions</p>
+                <p className="text-xs text-slate-muted">From crop-stage rules on the current readings</p>
               </div>
-              <Link to="/intelligence" className="text-xs text-agri font-bold hover:underline">
-                View All ({recommendations.length})
+              <Link to="/intelligence" className="text-xs text-forest font-medium hover:underline">
+                All notes ({recommendations.length})
               </Link>
             </div>
 
@@ -331,7 +324,7 @@ export function DashboardOverview() {
               {recommendations.slice(0, 3).map((rec) => (
                 <div
                   key={rec.id}
-                  className="p-3.5 rounded-xl border border-slate-100 bg-ivory/60 hover:bg-white hover:border-agri/30 transition-all text-xs space-y-1.5"
+                  className="p-3 border border-slate-border bg-ivory text-xs space-y-1.5"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-charcoal truncate">{rec.title}</span>
@@ -349,10 +342,10 @@ export function DashboardOverview() {
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-muted">
-            <span>Decision Layer: 100% Transparent Rule Engine</span>
-            <Link to="/intelligence" className="text-forest font-bold hover:underline">
-              Review Recommendations →
+          <div className="mt-4 pt-3 border-t border-slate-border flex items-center justify-between text-xs text-slate-muted">
+            <span>Each note names the rule that fired</span>
+            <Link to="/intelligence" className="text-forest font-medium hover:underline">
+              Review advice
             </Link>
           </div>
         </div>

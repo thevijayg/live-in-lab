@@ -28,9 +28,9 @@ export function DashboardLayout() {
           {criticalRisks.length > 0 && location.pathname !== "/risks" && (
             <AlertBanner
               type="critical"
-              title="Immediate Attention Required on Field"
-              message={`${criticalRisks[0].title}. Please review the agricultural risk dashboard.`}
-              actionLabel="View Active Risks"
+              title="A field needs attention"
+              message={`${criticalRisks[0].title}. Open risks to see the reading and the recommended action.`}
+              actionLabel="Open risks"
               onAction={() => window.location.href = "/risks"}
             />
           )}
@@ -40,9 +40,9 @@ export function DashboardLayout() {
         </main>
 
         {/* Global Dashboard Footer */}
-        <footer className="border-t border-slate-border py-4 px-6 text-center text-xs text-slate-muted bg-white/50">
+        <footer className="border-t border-slate-border py-3 px-6 text-center text-xs text-slate-muted bg-white">
           <p>
-            <strong>AGRINOVA</strong> — Smart Agriculture Platform • Pilot Demonstration in Tamil Nadu & Maharashtra • All sensor streams are illustrative telemetry.
+            AGRINOVA · Tamil Nadu & Maharashtra pilots · Sensor values in this demo are simulated
           </p>
         </footer>
       </div>

@@ -139,25 +139,25 @@ export function FarmManagement() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Farm Management
+            <h1 className="page-title">
+              Farms
             </h1>
-            <Badge variant="forest">{farms.length} Pilot Holdings</Badge>
+            <Badge variant="outline">{farms.length} holdings</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Sense Layer: Structured agricultural land records across Tamil Nadu and Maharashtra pilot clusters.
+          <p className="text-sm text-slate-muted mt-1">
+            Land records for the Tamil Nadu and Maharashtra sample farms.
           </p>
         </div>
 
         <button
           onClick={handleOpenCreate}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all self-start sm:self-auto"
+          className="btn-primary self-start sm:self-auto"
         >
           <Plus className="w-4 h-4" />
-          <span>Register New Farm</span>
+          <span>Add farm</span>
         </button>
       </div>
 
@@ -233,7 +233,7 @@ export function FarmManagement() {
                 <div className="grid grid-cols-3 gap-2 py-4 text-xs">
                   <div className="bg-ivory p-2.5 rounded-xl border border-slate-200/70">
                     <span className="text-slate-muted block text-[10px] uppercase font-bold">Area</span>
-                    <span className="font-extrabold text-charcoal text-sm">{farm.area} {farm.areaUnit}</span>
+                    <span className="font-display font-medium text-charcoal text-sm">{farm.area} {farm.areaUnit}</span>
                   </div>
                   <div className="bg-ivory p-2.5 rounded-xl border border-slate-200/70">
                     <span className="text-slate-muted block text-[10px] uppercase font-bold">Soil</span>
@@ -314,7 +314,7 @@ export function FarmManagement() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`py-2 px-3 rounded-lg font-bold transition-all whitespace-nowrap ${
                     activeTab === tab.id
-                      ? "bg-forest text-lime-accent shadow-sm"
+                      ? "bg-forest text-cream"
                       : "text-slate-muted hover:text-charcoal hover:bg-slate-100"
                   }`}
                 >
@@ -437,7 +437,7 @@ export function FarmManagement() {
                 </p>
                 <Link
                   to="/digital-profiles"
-                  className="mt-3 inline-block px-4 py-2 rounded-xl text-xs font-bold bg-forest text-lime-accent shadow-sm"
+                  className="mt-3 inline-block px-4 py-2 rounded-xl text-xs font-bold bg-forest text-cream"
                 >
                   Open Digital Farm Profile Page
                 </Link>
@@ -611,7 +611,7 @@ export function FarmManagement() {
             </button>
             <button
               type="submit"
-              className="px-5 py-2 text-xs font-bold rounded-xl bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all"
+              className="btn-primary text-xs"
             >
               {editingFarmId ? "Update Farm Record" : "Save Farm Registration"}
             </button>

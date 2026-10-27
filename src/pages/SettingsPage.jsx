@@ -9,10 +9,23 @@ import {
   RotateCcw,
   CheckCircle2,
   AlertTriangle,
-  Info
+  Info,
+  Check
 } from "lucide-react";
 import { Badge } from "../components/common/Badge";
 import { ConfirmDialog } from "../components/common/ConfirmDialog";
+
+const LANGUAGE_PREVIEWS = {
+  English: "Moisture on the selected plot is inside the usual band. Probes are reporting.",
+  Tamil: "மீண்டும் வரவேற்கிறோம்! உங்கள் பண்ணை ஆரோக்கியமாக உள்ளது.",
+  Marathi: "पुन्हा स्वागत आहे! तुमचे शेत निरोगी आहे आणि सेन्सर सक्रिय आहेत."
+};
+
+const LANGUAGE_FLAGS = {
+  English: "🇬🇧",
+  Tamil: "🇮🇳",
+  Marathi: "🇮🇳"
+};
 
 export function SettingsPage() {
   const {
@@ -54,23 +67,23 @@ export function SettingsPage() {
   const handleResetConfirm = async () => {
     setIsResetConfirmOpen(false);
     await resetAllDemoData();
-    setResetMessage("Demonstration state has been restored to default baseline!");
+    setResetMessage("Demo data reset to the original sample farms.");
     setTimeout(() => setResetMessage(""), 4000);
   };
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Farmer Profile & System Preferences
+            <h1 className="page-title">
+              Profile and preferences
             </h1>
-            <Badge variant="forest">{currentUser?.role || "Farmer"}</Badge>
+            <Badge variant="outline">{currentUser?.role || "Farmer"}</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Manage your account credentials, regional language preferences, and evaluation environment settings.
+          <p className="text-sm text-slate-muted mt-1">
+            Name, language, and alert choices for this demo session.
           </p>
         </div>
       </div>
@@ -78,7 +91,7 @@ export function SettingsPage() {
       {saveSuccess && (
         <div className="p-4 bg-emerald-50 border border-emerald-300 rounded-xl text-emerald-900 text-xs flex items-center gap-2 font-bold animate-in fade-in">
           <CheckCircle2 className="w-4 h-4 text-agri" />
-          <span>Profile preferences updated successfully!</span>
+          <span>Saved.</span>
         </div>
       )}
 
@@ -90,7 +103,7 @@ export function SettingsPage() {
       )}
 
       {/* Profile Form */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
           <User className="w-4 h-4 text-forest" />
           <span>Personal & Farm Contact Information</span>
@@ -164,7 +177,7 @@ export function SettingsPage() {
           <div className="pt-2 flex justify-end">
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-xl text-xs font-bold bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all"
+              className="btn-primary text-xs"
             >
               Save Profile Updates
             </button>
@@ -173,7 +186,7 @@ export function SettingsPage() {
       </div>
 
       {/* Language Preferences */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
           <Globe className="w-4 h-4 text-forest" />
           <span>Multilingual Interface Setup (Tamil Nadu & Maharashtra)</span>
@@ -191,24 +204,45 @@ export function SettingsPage() {
             <div
               key={item.lang}
               onClick={() => setPreferredLanguage(item.lang)}
-              className={`p-4 rounded-xl border cursor-pointer transition-all ${
+              className={`p-4 rounded-xl border cursor-pointer transition-all relative ${
                 preferredLanguage === item.lang
                   ? "bg-forest/5 border-forest ring-1 ring-forest"
                   : "bg-ivory border-slate-border hover:bg-slate-50"
               }`}
             >
-              <div className="flex justify-between items-center mb-1">
-                <span className="font-bold text-sm text-charcoal">{item.lang}</span>
+              {preferredLanguage === item.lang && (
+                <span className="absolute top-2 right-2 w-5 h-5 bg-forest rounded-full flex items-center justify-center">
+                  <Check className="w-3 h-3 text-cream" />
+                </span>
+              )}
+              <div className="flex justify-between items-center mb-1 pr-6">
+                <span className="font-bold text-sm text-charcoal flex items-center gap-1.5">
+                  <span>{LANGUAGE_FLAGS[item.lang]}</span>
+                  <span>{item.lang}</span>
+                </span>
                 <span className="text-xs text-agri font-bold">{item.native}</span>
               </div>
               <span className="text-[11px] text-slate-muted">{item.status}</span>
             </div>
           ))}
         </div>
+
+        {/* Live Preview Banner */}
+        <div className="p-4 rounded-md bg-ivory border border-slate-border flex items-start gap-3">
+          <Globe className="w-4 h-4 text-agri flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-muted mb-1">
+              Live Preview — {preferredLanguage}
+            </p>
+            <p className="text-sm font-semibold text-charcoal leading-relaxed">
+              {LANGUAGE_PREVIEWS[preferredLanguage]}
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Notification Preferences */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4 text-xs">
+      <div className="panel p-5 space-y-4 text-xs">
         <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
           <Bell className="w-4 h-4 text-forest" />
           <span>Notification & Telemetry Alert Preferences</span>

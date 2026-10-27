@@ -25,16 +25,16 @@ export function NotificationsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Centralized Alert & Notification Center
+            <h1 className="page-title">
+              Alerts
             </h1>
-            <Badge variant="lime">{unreadNotifCount} Unread</Badge>
+            <Badge variant="outline">{unreadNotifCount} unread</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Real-time notifications for threshold anomalies, sensor telemetry dropouts, and priority agricultural advisories.
+          <p className="text-sm text-slate-muted mt-1">
+            Threshold breaches, probes that went quiet, and advice that still needs a decision.
           </p>
         </div>
       </div>
@@ -47,7 +47,7 @@ export function NotificationsPage() {
             onClick={() => setFilterType(type)}
             className={`py-2 px-3.5 rounded-xl font-bold transition-all border ${
               filterType === type
-                ? "bg-forest text-lime-accent border-forest shadow-sm"
+                ? "bg-forest text-cream border-forest"
                 : "bg-white text-slate-muted border-slate-border hover:text-charcoal hover:bg-slate-50"
             }`}
           >
@@ -57,7 +57,7 @@ export function NotificationsPage() {
       </div>
 
       {/* Notification Items List */}
-      <div className="bg-white rounded-2xl border border-slate-border shadow-sm overflow-hidden divide-y divide-slate-100">
+      <div className="panel overflow-hidden divide-y divide-slate-100">
         {filteredNotifs.length === 0 ? (
           <div className="p-8 text-center text-slate-muted text-xs">
             No notifications match your active filter.

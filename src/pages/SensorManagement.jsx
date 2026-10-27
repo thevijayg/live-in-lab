@@ -132,16 +132,16 @@ export function SensorManagement() {
   return (
     <div className="space-y-6">
       {/* Top Header & Simulation Controls */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              IoT Sensor Management
+            <h1 className="page-title">
+              Sensors
             </h1>
-            <Badge variant="agri">{sensors.length} Registered Nodes</Badge>
+            <Badge variant="outline">{sensors.length} probes</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Sense Layer: Real-time telemetry across soil root-depth, ambient microclimate, and macronutrient chemistry.
+          <p className="text-sm text-slate-muted mt-1">
+            Moisture, weather, pH, EC, and NPK nodes on the sample farms. The stream here is simulated.
           </p>
         </div>
 
@@ -172,7 +172,7 @@ export function SensorManagement() {
           {/* Add Sensor */}
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all"
+            className="btn-primary text-xs"
           >
             <Plus className="w-4 h-4" />
             <span>Add Sensor</span>
@@ -247,7 +247,7 @@ export function SensorManagement() {
           }}
         />
       ) : (
-        <div className="bg-white rounded-2xl border border-slate-border shadow-sm overflow-hidden">
+        <div className="panel overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
@@ -301,7 +301,7 @@ export function SensorManagement() {
                       </td>
 
                       <td className="py-3.5 px-4 text-right">
-                        <span className="text-base font-black text-forest">
+                        <span className="text-base font-semibold text-forest">
                           {sensor.latestReading}
                         </span>
                         <span className="text-xs font-bold text-slate-muted ml-1">
@@ -470,7 +470,7 @@ export function SensorManagement() {
             </button>
             <button
               type="submit"
-              className="px-5 py-2 text-xs font-bold rounded-xl bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all"
+              className="btn-primary text-xs"
             >
               Register Sensor Node
             </button>
@@ -490,7 +490,7 @@ export function SensorManagement() {
             <div className="grid grid-cols-3 gap-3 bg-ivory p-4 rounded-xl border border-slate-border text-xs">
               <div>
                 <p className="text-slate-muted">Latest Measurement</p>
-                <p className="text-2xl font-black text-forest mt-0.5">
+                <p className="text-2xl font-semibold text-forest mt-0.5">
                   {selectedSensorForDetails.latestReading} {selectedSensorForDetails.unit}
                 </p>
               </div>
@@ -553,7 +553,7 @@ export function SensorManagement() {
               <button
                 type="button"
                 onClick={() => setSelectedSensorForDetails(null)}
-                className="px-4 py-2 text-xs font-bold rounded-xl bg-forest text-lime-accent hover:bg-forest-dark transition-colors"
+                className="btn-primary text-xs"
               >
                 Close Telemetry View
               </button>

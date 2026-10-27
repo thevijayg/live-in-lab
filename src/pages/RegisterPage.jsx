@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
-import { Sprout, ArrowRight, CheckCircle2, Info } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export function RegisterPage() {
   const { loginUser } = useApp();
@@ -51,35 +51,29 @@ export function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-xl text-center">
-        <Link to="/" className="inline-flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-forest flex items-center justify-center p-2 shadow-lg">
-            <img src="/logo.svg" alt="AGRINOVA logo" className="w-full h-full" />
-          </div>
-          <div className="text-left">
-            <span className="text-2xl font-black tracking-tight text-forest-dark block leading-none">
-              AGRINOVA
-            </span>
-            <span className="text-[11px] font-semibold text-agri tracking-widest uppercase">
-              Smart Agriculture
-            </span>
+    <div className="min-h-screen bg-ivory flex flex-col justify-center py-12 px-4">
+      <div className="mx-auto w-full max-w-xl">
+        <Link to="/" className="inline-flex items-center gap-2.5">
+          <img src="/logo.svg" alt="" className="w-8 h-8" />
+          <div>
+            <span className="block text-[15px] font-semibold tracking-wide text-forest">AGRINOVA</span>
+            <span className="block text-[11px] text-slate-muted">Tamil Nadu & Maharashtra pilots</span>
           </div>
         </Link>
-        <h2 className="mt-4 text-2xl sm:text-3xl font-extrabold text-charcoal">
-          Create Your Farm Account
-        </h2>
-        <p className="mt-1 text-xs sm:text-sm text-slate-muted">
-          Register your farm profile to join the Tamil Nadu or Maharashtra pilot ecosystem.
+        <h1 className="mt-8 font-display text-3xl text-charcoal">
+          Register a farm
+        </h1>
+        <p className="mt-2 text-sm text-slate-muted">
+          Name, contact, role, and the district you farm in. You can add plots after you sign in.
         </p>
       </div>
 
-      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-xl">
-        <div className="bg-white py-8 px-6 shadow-xl border border-slate-border sm:rounded-3xl sm:px-10">
+      <div className="mt-8 mx-auto w-full max-w-xl">
+        <div className="panel p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   Full Name
                 </label>
                 <input
@@ -89,12 +83,12 @@ export function RegisterPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   Email Address
                 </label>
                 <input
@@ -104,14 +98,14 @@ export function RegisterPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   Phone Number
                 </label>
                 <input
@@ -121,12 +115,12 @@ export function RegisterPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   Password
                 </label>
                 <input
@@ -136,21 +130,21 @@ export function RegisterPage() {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   Application Role
                 </label>
                 <select
                   name="role"
                   value={formData.role}
                   onChange={handleChange}
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 >
                   <option value="Farmer">Farmer (Landholder / Tenant)</option>
                   <option value="FPO Administrator">FPO Administrator</option>
@@ -160,14 +154,14 @@ export function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   Preferred Interface Language
                 </label>
                 <select
                   name="preferredLanguage"
                   value={formData.preferredLanguage}
                   onChange={handleChange}
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 >
                   <option value="English">English</option>
                   <option value="Tamil">தமிழ் (Tamil)</option>
@@ -178,14 +172,14 @@ export function RegisterPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-slate-100">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   Pilot State
                 </label>
                 <select
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 >
                   <option value="Tamil Nadu">Tamil Nadu</option>
                   <option value="Maharashtra">Maharashtra</option>
@@ -193,14 +187,14 @@ export function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   District
                 </label>
                 <select
                   name="district"
                   value={formData.district}
                   onChange={handleChange}
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 >
                   {districtsByState[formData.state].map(d => (
                     <option key={d} value={d}>{d}</option>
@@ -209,7 +203,7 @@ export function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-charcoal mb-1">
+                <label className="block text-xs font-medium text-slate-muted mb-1">
                   Village / Taluk
                 </label>
                 <input
@@ -218,24 +212,21 @@ export function RegisterPage() {
                   placeholder="e.g. Thondamuthur"
                   value={formData.village}
                   onChange={handleChange}
-                  className="w-full bg-ivory text-charcoal text-sm px-3.5 py-2.5 rounded-xl border border-slate-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-agri/30"
+                  className="input-field"
                 />
               </div>
             </div>
 
             <div className="pt-2">
-              <button
-                type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-bold bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all"
-              >
+              <button type="submit" className="btn-primary w-full">
                 {submitted ? (
                   <>
-                    <CheckCircle2 className="w-5 h-5 text-lime-accent" />
-                    <span>Account Created! Loading Workspace...</span>
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Opening the workspace…</span>
                   </>
                 ) : (
                   <>
-                    <span>Complete Registration & Open Dashboard</span>
+                    <span>Create account</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
@@ -243,10 +234,10 @@ export function RegisterPage() {
             </div>
           </form>
 
-          <div className="mt-6 text-center text-xs text-slate-muted">
+          <div className="mt-6 text-center text-sm text-slate-muted">
             Already registered?{" "}
-            <Link to="/login" className="font-bold text-agri hover:underline">
-              Sign In to Your Account
+            <Link to="/login" className="font-medium text-forest hover:underline">
+              Sign in
             </Link>
           </div>
         </div>

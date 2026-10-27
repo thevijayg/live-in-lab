@@ -19,7 +19,7 @@ export function Badge({ children, variant = "default", size = "sm" }) {
   };
 
   return (
-    <span className={`inline-flex items-center gap-1 rounded-full ${sizeClasses[size] || sizeClasses.sm} ${variantClasses[variant] || variantClasses.default}`}>
+    <span className={`inline-flex items-center gap-1 rounded ${sizeClasses[size] || sizeClasses.sm} ${variantClasses[variant] || variantClasses.default}`}>
       {children}
     </span>
   );

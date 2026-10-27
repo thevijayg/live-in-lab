@@ -19,14 +19,14 @@ export function Modal({ isOpen, onClose, title, children, maxWidth = "max-w-2xl"
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-charcoal/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-charcoal/50 flex items-center justify-center p-4">
       <div
         className="fixed inset-0"
         onClick={onClose}
         aria-hidden="true"
       />
       <div
-        className={`relative bg-white rounded-2xl shadow-2xl border border-slate-border w-full ${maxWidth} overflow-hidden transform transition-all z-10`}
+        className={`relative bg-white rounded-md border border-slate-border w-full ${maxWidth} overflow-hidden z-10`}
         role="dialog"
         aria-modal="true"
       >

@@ -94,22 +94,22 @@ export function FpoManagement() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              FPO Collective & Field Officer Workspace
+            <h1 className="page-title">
+              FPO workspace
             </h1>
-            <Badge variant="forest">FPO Administration</Badge>
+            <Badge variant="outline">Member farms</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Aggregated multi-farm intelligence for Farmer Producer Organizations and Field Extension teams in Tamil Nadu & Maharashtra.
+          <p className="text-sm text-slate-muted mt-1">
+            Acreage and visit notes across member holdings in the Tamil Nadu and Maharashtra samples.
           </p>
         </div>
 
         <button
           onClick={() => setIsVisitModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all self-start sm:self-auto"
+          className="btn-primary self-start sm:self-auto"
         >
           <ClipboardList className="w-4 h-4" />
           <span>Log Field Officer Visit</span>
@@ -161,7 +161,7 @@ export function FpoManagement() {
       </div>
 
       {/* FPO Member Farms Filtered Table */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
           <h3 className="text-sm font-bold text-charcoal">FPO Collective Farm Roster</h3>
           <div className="flex flex-wrap items-center gap-2 text-xs">
@@ -224,7 +224,7 @@ export function FpoManagement() {
       </div>
 
       {/* Field Officer Visit Log Records */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div>
             <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
@@ -346,7 +346,7 @@ export function FpoManagement() {
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-xl text-xs font-bold bg-forest hover:bg-forest-dark text-lime-accent"
+              className="btn-primary text-xs"
             >
               Save Visit Log
             </button>

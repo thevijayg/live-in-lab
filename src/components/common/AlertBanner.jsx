@@ -33,7 +33,7 @@ export function AlertBanner({ type = "info", title, message, actionLabel, onActi
   const Icon = current.icon;
 
   return (
-    <div className={`rounded-xl border p-4 shadow-sm flex items-start gap-3 transition-all ${current.bg} ${className}`}>
+    <div className={`rounded-md border p-4 flex items-start gap-3 ${current.bg} ${className}`}>
       <Icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${current.iconColor}`} />
       <div className="flex-1 text-sm">
         {title && <h4 className="font-semibold">{title}</h4>}
@@ -42,7 +42,7 @@ export function AlertBanner({ type = "info", title, message, actionLabel, onActi
       {actionLabel && onAction && (
         <button
           onClick={onAction}
-          className={`px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition-colors flex-shrink-0 ${current.btn}`}
+          className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors flex-shrink-0 ${current.btn}`}
         >
           {actionLabel}
         </button>

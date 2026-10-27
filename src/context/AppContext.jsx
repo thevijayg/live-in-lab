@@ -33,7 +33,15 @@ export function AppProvider({ children }) {
 
   // UI state
   const [searchTerm, setSearchTerm] = useState("");
-  const [preferredLanguage, setPreferredLanguage] = useState("English");
+  const [preferredLanguage, setPreferredLanguage] = useState(
+    () => localStorage.getItem("agrinova_lang") || "English"
+  );
+
+  // Persist language to localStorage whenever it changes
+  const setPreferredLanguageWithPersist = (lang) => {
+    localStorage.setItem("agrinova_lang", lang);
+    setPreferredLanguage(lang);
+  };
   const [isSimulating, setIsSimulating] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -250,7 +258,7 @@ export function AppProvider({ children }) {
         searchTerm,
         setSearchTerm,
         preferredLanguage,
-        setPreferredLanguage,
+        setPreferredLanguage: setPreferredLanguageWithPersist,
         isSimulating,
         setIsSimulating,
         isLoading,

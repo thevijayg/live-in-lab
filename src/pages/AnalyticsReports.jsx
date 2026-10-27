@@ -105,16 +105,16 @@ export function AnalyticsReports() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 no-print">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 no-print">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Analytics, Sensor Trends & Reports
+            <h1 className="page-title">
+              Trends
             </h1>
-            <Badge variant="forest">System Intelligence</Badge>
+            <Badge variant="outline">Sample history</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Historical time-series, sensor node availability, and regional crop distributions across Tamil Nadu & Maharashtra.
+          <p className="text-sm text-slate-muted mt-1">
+            Moisture over time, probe uptime, and crop mix on the demo farms.
           </p>
         </div>
 
@@ -128,7 +128,7 @@ export function AnalyticsReports() {
           </button>
           <button
             onClick={handleExportCSV}
-            className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all"
+            className="btn-primary text-xs"
           >
             <Download className="w-4 h-4" />
             <span>Download CSV Datasets</span>
@@ -137,7 +137,7 @@ export function AnalyticsReports() {
       </div>
 
       {/* Primary Chart: 7-Day Soil Moisture vs Ambient Microclimate */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
           <div>
             <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
@@ -153,7 +153,7 @@ export function AnalyticsReports() {
                 onClick={() => setDateRange(range)}
                 className={`px-3 py-1 rounded-lg font-bold transition-all ${
                   dateRange === range
-                    ? "bg-forest text-lime-accent"
+                    ? "bg-forest text-cream"
                     : "bg-ivory text-slate-muted hover:text-charcoal"
                 }`}
               >
@@ -184,7 +184,7 @@ export function AnalyticsReports() {
       {/* Two Column Grid: Crop Area Distribution & Sensor Health */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left: Crop Acreage Distribution */}
-        <div className="lg:col-span-6 bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+        <div className="lg:col-span-6 panel p-5 space-y-4">
           <div className="pb-3 border-b border-slate-100">
             <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
               <Sprout className="w-4 h-4 text-forest" />
@@ -213,7 +213,7 @@ export function AnalyticsReports() {
         </div>
 
         {/* Right: Sensor Fleet Availability Pie */}
-        <div className="lg:col-span-6 bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+        <div className="lg:col-span-6 panel p-5 space-y-4">
           <div className="pb-3 border-b border-slate-100">
             <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
               <Cpu className="w-4 h-4 text-forest" />

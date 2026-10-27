@@ -3,30 +3,87 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-color: #F7F8F2;
-    color: #1F2933;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #F4F1EA;
+    color: #1C1917;
+    font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1B4332;
+    outline-offset: 2px;
   }
 }
 
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #EEF0E5;
-}
-::-webkit-scrollbar-thumb {
-  background: #A3D977;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #2F855A;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium
+      bg-forest text-cream hover:bg-forest-dark
+      border border-transparent rounded-md transition-colors;
+  }
+
+  .btn-primary:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium
+      bg-white text-forest hover:bg-ivory
+      border border-slate-border rounded-md transition-colors;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium
+      text-charcoal hover:bg-ivory-subtle rounded-md transition-colors;
+  }
+
+  .input-field {
+    @apply w-full bg-white text-charcoal text-sm px-3 py-2.5
+      rounded-md border border-slate-border
+      focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/20;
+  }
+
+  .panel {
+    @apply bg-white border border-slate-border rounded-md;
+  }
+
+  .page-kicker {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-soil;
+  }
+
+  .page-title {
+    @apply font-display text-2xl sm:text-[1.65rem] font-medium text-charcoal tracking-tight;
+  }
 }
 
-/* Print styles for reports and farm profiles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EAE6DC;
+}
+::-webkit-scrollbar-thumb {
+  background: #A3B18A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1B4332;
+}
+
 @media print {
   body {
     background: #FFFFFF !important;

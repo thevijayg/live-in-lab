@@ -33,16 +33,16 @@ export function RiskMonitoring() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Farm Risk Monitoring & Early Warning
+            <h1 className="page-title">
+              Risks
             </h1>
-            <Badge variant="warning">{activeRisks.length} Active Risks</Badge>
+            <Badge variant="warning">{activeRisks.length} open</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Decide Layer: Detects moisture depletion, thermal anomalies, and telemetry dropouts across fields.
+          <p className="text-sm text-slate-muted mt-1">
+            Moisture falling too far, heat on the canopy, or a probe that stopped reporting.
           </p>
         </div>
       </div>
@@ -135,7 +135,7 @@ export function RiskMonitoring() {
                     </button>
                     <button
                       onClick={() => updateRiskStatus(risk.id, "Resolved")}
-                      className="px-3 py-1.5 rounded-xl text-xs font-bold bg-forest text-lime-accent hover:bg-forest-dark transition-colors shadow-sm"
+                      className="btn-primary text-xs py-1.5 px-3"
                     >
                       Mark Resolved
                     </button>
@@ -149,7 +149,7 @@ export function RiskMonitoring() {
 
       {/* Historical / Acknowledged Risks Table */}
       {resolvedRisks.length > 0 && (
-        <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+        <div className="panel p-5 space-y-4">
           <h3 className="text-sm font-bold text-charcoal">Resolved & Acknowledged Risk Log</h3>
           <div className="overflow-x-auto text-xs">
             <table className="w-full text-left border-collapse">

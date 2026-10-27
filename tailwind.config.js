@@ -8,41 +8,55 @@ export default {
     extend: {
       colors: {
         forest: {
-          DEFAULT: '#174C35',
-          dark: '#103626',
-          light: '#236e4f',
+          DEFAULT: '#1B4332',
+          dark: '#122C21',
+          light: '#2D6A4F',
         },
         agri: {
-          DEFAULT: '#2F855A',
-          dark: '#22543D',
-          light: '#38A169',
+          DEFAULT: '#2D6A4F',
+          dark: '#1B4332',
+          light: '#40916C',
+        },
+        soil: {
+          DEFAULT: '#8B5E34',
+          light: '#C4A574',
         },
         lime: {
-          accent: '#A3D977',
-          light: '#D9F2BF',
-          soft: '#F0F9E8',
+          accent: '#A3B18A',
+          light: '#DAD7CD',
+          soft: '#F0EDE4',
+        },
+        cream: {
+          DEFAULT: '#F7F3EA',
         },
         ivory: {
-          DEFAULT: '#F7F8F2',
-          subtle: '#EEF0E5',
+          DEFAULT: '#F4F1EA',
+          subtle: '#EAE6DC',
         },
         charcoal: {
-          DEFAULT: '#1F2933',
-          light: '#323F4B',
+          DEFAULT: '#1C1917',
+          light: '#44403C',
         },
         slate: {
-          muted: '#667085',
-          border: '#E4E7EC',
+          muted: '#57534E',
+          border: '#DDD6C9',
         },
         amber: {
-          warn: '#E9A23B',
+          warn: '#B45309',
         },
         danger: {
-          DEFAULT: '#DC5555',
+          DEFAULT: '#B42318',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Source Sans 3', 'system-ui', 'sans-serif'],
+        display: ['Newsreader', 'Georgia', 'serif'],
+      },
+      borderRadius: {
+        DEFAULT: '6px',
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(28, 25, 23, 0.06)',
       }
     },
   },

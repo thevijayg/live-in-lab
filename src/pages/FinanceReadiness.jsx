@@ -97,22 +97,22 @@ export function FinanceReadiness() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Farm Finance & Credit Documentation Readiness
+            <h1 className="page-title">
+              Documents
             </h1>
-            <Badge variant="forest">Finance Layer</Badge>
+            <Badge variant="outline">Credit paperwork</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Pre-structures verified farm intelligence to assist farmers applying for agricultural credit, micro-irrigation subsidies, or FPO joint financing.
+          <p className="text-sm text-slate-muted mt-1">
+            A checklist of papers a branch or FPO typically asks for. Completeness is not a credit score.
           </p>
         </div>
 
         <button
           onClick={() => setIsUploadModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-forest hover:bg-forest-dark text-lime-accent shadow-md transition-all self-start sm:self-auto"
+          className="btn-primary self-start sm:self-auto"
         >
           <Upload className="w-4 h-4" />
           <span>Upload Supporting Document</span>
@@ -131,13 +131,13 @@ export function FinanceReadiness() {
       </div>
 
       {/* Documentation Readiness Gauge Card */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div className="panel p-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         <div className="lg:col-span-4 bg-ivory p-6 rounded-2xl border border-slate-200/80 text-center">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-muted">
             Documentation Completeness
           </span>
           <div className="mt-2 flex items-center justify-center gap-1">
-            <span className="text-5xl font-black text-forest">{documentationCompletenessScore}</span>
+            <span className="text-5xl font-semibold text-forest">{documentationCompletenessScore}</span>
             <span className="text-xl font-bold text-slate-muted">%</span>
           </div>
           <Badge variant={documentationCompletenessScore >= 80 ? "agri" : "warning"} size="sm" className="mt-2">
@@ -178,7 +178,7 @@ export function FinanceReadiness() {
       </div>
 
       {/* Uploaded Documents List */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4">
+      <div className="panel p-5 space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div>
             <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
@@ -317,7 +317,7 @@ export function FinanceReadiness() {
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-xl text-xs font-bold bg-forest hover:bg-forest-dark text-lime-accent"
+              className="btn-primary text-xs"
             >
               Upload Document
             </button>

@@ -72,16 +72,16 @@ export function FieldMonitoring() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-charcoal">
-              Field-Level Telemetry Monitoring
+            <h1 className="page-title">
+              Fields
             </h1>
-            <Badge variant="forest">{currentFarmFields.length} Registered Plots</Badge>
+            <Badge variant="outline">{currentFarmFields.length} plots</Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-muted mt-1">
-            Sense Layer: Granular sub-plot environmental telemetry for <strong className="text-charcoal">{selectedFarm?.name}</strong>.
+          <p className="text-sm text-slate-muted mt-1">
+            Plot-level readings on {selectedFarm?.name || "the selected farm"}.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export function FieldMonitoring() {
             onClick={() => setComparisonMode(!comparisonMode)}
             className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
               comparisonMode
-                ? "bg-forest text-lime-accent border-forest shadow-sm"
+                ? "bg-forest text-cream border-forest"
                 : "bg-ivory text-charcoal border-slate-border hover:bg-slate-50"
             }`}
           >
@@ -107,7 +107,7 @@ export function FieldMonitoring() {
             onClick={() => setSelectedFieldId(fld.id)}
             className={`py-2.5 px-4 rounded-xl font-bold transition-all whitespace-nowrap border ${
               activeField?.id === fld.id
-                ? "bg-forest text-lime-accent border-forest shadow-sm"
+                ? "bg-forest text-cream border-forest"
                 : "bg-white text-slate-muted border-slate-border hover:text-charcoal hover:bg-slate-50"
             }`}
           >
@@ -118,7 +118,7 @@ export function FieldMonitoring() {
 
       {/* Multi-Field Comparison Matrix (When active) */}
       {comparisonMode && (
-        <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-4 animate-in fade-in">
+        <div className="panel p-5 space-y-4 animate-in fade-in">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div>
               <h3 className="text-sm font-bold text-charcoal flex items-center gap-2">
@@ -186,7 +186,7 @@ export function FieldMonitoring() {
               {moistureSensor ? (
                 <div className="mt-2">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-2xl font-black text-forest">{moistureSensor.latestReading}</span>
+                    <span className="text-2xl font-semibold text-forest">{moistureSensor.latestReading}</span>
                     <span className="text-xs font-bold text-slate-muted">%</span>
                   </div>
                   <span className={`text-[10px] font-bold mt-1 block ${
@@ -213,7 +213,7 @@ export function FieldMonitoring() {
               {tempSensor ? (
                 <div className="mt-2">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-2xl font-black text-charcoal">{tempSensor.latestReading}</span>
+                    <span className="text-2xl font-semibold text-charcoal">{tempSensor.latestReading}</span>
                     <span className="text-xs font-bold text-slate-muted">°C</span>
                   </div>
                   <span className="text-[10px] text-slate-muted mt-1 block">Ambient Canopy</span>
@@ -232,7 +232,7 @@ export function FieldMonitoring() {
               {humiditySensor ? (
                 <div className="mt-2">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-2xl font-black text-charcoal">{humiditySensor.latestReading}</span>
+                    <span className="text-2xl font-semibold text-charcoal">{humiditySensor.latestReading}</span>
                     <span className="text-xs font-bold text-slate-muted">%</span>
                   </div>
                   <span className="text-[10px] text-slate-muted mt-1 block">Canopy Boundary</span>
@@ -251,7 +251,7 @@ export function FieldMonitoring() {
               {lightSensor ? (
                 <div className="mt-2">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-xl font-black text-charcoal">{lightSensor.latestReading}</span>
+                    <span className="text-xl font-semibold text-charcoal">{lightSensor.latestReading}</span>
                     <span className="text-[10px] font-bold text-slate-muted">lux</span>
                   </div>
                   <span className="text-[10px] text-slate-muted mt-1 block">Photosynthetic Flux</span>
@@ -270,7 +270,7 @@ export function FieldMonitoring() {
               {phSensor ? (
                 <div className="mt-2">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-2xl font-black text-forest">{phSensor.latestReading}</span>
+                    <span className="text-2xl font-semibold text-forest">{phSensor.latestReading}</span>
                     <span className="text-xs font-bold text-slate-muted">pH</span>
                   </div>
                   <span className="text-[10px] text-agri font-semibold mt-1 block">Neutral Loam</span>
@@ -289,7 +289,7 @@ export function FieldMonitoring() {
               {nSensor ? (
                 <div className="mt-2">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-xl font-black text-charcoal">{nSensor.latestReading}</span>
+                    <span className="text-xl font-semibold text-charcoal">{nSensor.latestReading}</span>
                     <span className="text-[10px] font-bold text-slate-muted">mg/kg</span>
                   </div>
                   <span className="text-[10px] text-amber-warn font-semibold mt-1 block">Sub-optimal</span>
@@ -301,7 +301,7 @@ export function FieldMonitoring() {
           </div>
 
           {/* Condition Evaluation Summary Card */}
-          <div className="bg-white rounded-2xl p-6 border border-slate-border shadow-sm space-y-3">
+          <div className="panel p-5 space-y-3">
             <h3 className="text-sm font-bold text-charcoal">Agronomic Condition Evaluation for {activeField.name}</h3>
             <p className="text-xs text-slate-muted leading-relaxed">
               Based on active sensor telemetry, root-depth moisture is evaluated against the configured target band ({activeField.soilMoistureTarget?.min}% - {activeField.soilMoistureTarget?.max}%) for {activeField.crop}.

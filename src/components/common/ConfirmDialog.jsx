@@ -17,7 +17,7 @@ export function ConfirmDialog({ isOpen, onClose, onConfirm, title, message, conf
         <button
           type="button"
           onClick={onClose}
-          className="px-4 py-2 rounded-xl text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors"
+          className="btn-secondary"
         >
           Cancel
         </button>
@@ -27,8 +27,8 @@ export function ConfirmDialog({ isOpen, onClose, onConfirm, title, message, conf
             onConfirm();
             onClose();
           }}
-          className={`px-4 py-2 rounded-xl text-sm font-semibold text-white shadow-sm transition-colors ${
-            isDanger ? "bg-danger hover:bg-rose-700" : "bg-forest hover:bg-forest-dark"
+          className={`px-4 py-2 rounded-md text-sm font-medium text-cream ${
+            isDanger ? "bg-danger hover:bg-rose-800" : "bg-forest hover:bg-forest-dark"
           }`}
         >
           {confirmText}
